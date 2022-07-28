@@ -26,9 +26,12 @@ public class Main {
                     } while (login.isEmpty() || login.length() <= 5 || login.contains(" "));
 
                     do {
-                        password = JOptionPane.showInputDialog(
-                                frame,
-                                "<html><h2>Введите ваш пароль: ");
+                        JPasswordField pf = new JPasswordField();
+                       int check = JOptionPane.showConfirmDialog(null, pf, "Введите пароль", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                        if (check == JOptionPane.OK_OPTION) {
+                            password = new String(pf.getPassword());
+                        }
 
                         Pattern p = Pattern.compile("(([A-Z].*[0-9]))");
                         Matcher m = p.matcher(password);
@@ -37,9 +40,14 @@ public class Main {
                     } while (password.isEmpty() || password.length() <= 8 || password.contains(" ") || b == false);
 
                     while (!password.equals(password2)) {
-                        password2 = JOptionPane.showInputDialog(
-                                frame,
-                                "<html><h2>Повторите ваш пароль: ");
+
+                        JPasswordField pf = new JPasswordField();
+                        int check = JOptionPane.showConfirmDialog(null, pf, "Повторите пароль", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+
+                        if (check == JOptionPane.OK_OPTION) {
+                            password2 = new String(pf.getPassword());
+                        }
+
                     }
 
                     JOptionPane.showMessageDialog(frame, "Регистрация прошла успешно");
